@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{fragments :: head('Reservas')}"></head>
+  <body>
+    <div th:replace="~{fragments :: shell('reservas')}"></div>
+    <main id="contenido" class="main">
+      <div class="topline">
+        <span>Sabor Gourmet / Reservas</span>
+        <span class="tag">TU AGENDA</span>
+      </div>
+      <div class="page-heading">
+        <div>
+          <span class="eyebrow">CADA VISITA CUENTA</span>
+          <h1>Reservas</h1>
+          <p>Consulta, modifica y organiza los próximos encuentros.</p>
+        </div>
+        <a class="button" th:href="@{/reservas/nueva}">+ Nueva reserva</a>
+      </div>
+      <div th:replace="~{fragments :: avisos}"></div>
+      <section class="panel">
+        <form th:action="@{/reservas}" method="get" class="filter-row">
+          <div class="field">
+            <label for="fecha">Fecha de inicio</label>
+            <input type="date" id="fecha" name="fecha" th:value="${fecha}" />
+          </div>
+          <div class="field">
+            <label for="estado">Estado</label>
+            <select id="estado" name="estado">
+              <option value="">Todos los estados</option>
+              <option value="ACTIVA" th:selected="${estado != null and estado.name() == 'ACTIVA'}">
+                Activas
+              </option>
+              <option
+                value="CANCELADA"
+                th:selected="${estado != null and estado.name() == 'CANCELADA'}"
+              >
+                Canceladas
+              </option>
+            </select>
+          </div>
+          <button class="button outline" type="submit">Aplicar filtros</button>
+          <a class="text-link" th:href="@{/reservas}">Limpiar</a>
+          <span class="result-count" th:text="|${#lists.size(reservas)} reservas|"></span>
+        </form>
+        <div class="empty" th:if="${#lists.isEmpty(reservas)}">
+          <h3>No hay reservas que mostrar</h3>
+          <p>Cambia los filtros o crea una nueva reserva.</p>
+        </div>
+        <div class="table-wrap" th:unless="${#lists.isEmpty(reservas)}">
+          <table>
+            <thead>
+              <tr>
+                <th>Reserva / Cliente</th>
+                <th>Fecha y horario</th>
+                <th>Mesa</th>
+                <th>Personas</th>
+                <th>Estado</th>
+                <th class="right">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="r : ${reservas}">
+                <td>
+                  <strong th:text="${r.clienteNombre}"></strong>
+                  <small th:text="|#${r.id} · ${r.clienteEmail}|"></small>
+                  <small
+                    th:if="${!#strings.isEmpty(r.observaciones)}"
+                    class="observation"
+                    th:text="${r.observaciones}"
+                  ></small>
+                </td>
+                <td>
+                  <strong th:text="${#temporals.format(r.fecha,'dd/MM/yyyy')}"></strong>
+                  <small
+                    th:text="|${#temporals.format(r.hora,'HH:mm')} — ${#temporals.format(r.horaFin,'HH:mm')}|"
+                  ></small>
+                  <small
+                    th:if="${!r.fecha.equals(r.fechaFin)}"
+                    th:text="|Termina el ${#temporals.format(r.fechaFin,'dd/MM')}|"
+                  ></small>
+                </td>
+                <td>
+                  <strong th:text="|Mesa ${r.mesaNumero}|"></strong>
+                  <small th:text="${r.mesaUbicacion}"></small>
+                </td>
+                <td th:text="${r.cantidadPersonas}"></td>
+                <td>
+                  <span
+                    class="badge"
+                    th:classappend="${r.estado.name() == 'ACTIVA'} ? 'active' : 'cancelled'"
+                    th:text="${r.estado.name() == 'ACTIVA'} ? 'Activa' : 'Cancelada'"
+                  ></span>
+                </td>
+                <td>
+                  <div class="row-actions" th:if="${r.estado.name() == 'ACTIVA'}">
+                    <a class="small-button" th:href="@{/reservas/{id}/editar(id=${r.id})}">
+                      Editar
+                    </a>
+                    <form
+                      th:action="@{/reservas/{id}/cancelar(id=${r.id})}"
+                      method="post"
+                      data-confirm="¿Cancelar esta reserva y liberar la mesa?"
+                    >
+                      <button class="small-button danger-text" type="submit">Cancelar</button>
+                    </form>
+                  </div>
+                  <form
+                    class="row-actions"
+                    th:unless="${r.estado.name() == 'ACTIVA'}"
+                    th:action="@{/reservas/{id}/eliminar(id=${r.id})}"
+                    method="post"
+                    data-confirm="¿Eliminar definitivamente esta reserva del historial?"
+                  >
+                    <button class="small-button danger-text" type="submit">Eliminar</button>
+                  </form>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <p class="helper">
+        La cancelación conserva el registro y libera la mesa. La eliminación retira el registro del
+        historial.
+      </p>
+      <footer th:replace="~{fragments :: pie}"></footer>
+    </main>
+    <script th:replace="~{fragments :: scripts}"></script>
+  </body>
+</html>

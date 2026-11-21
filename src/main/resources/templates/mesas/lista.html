@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{fragments :: head('Mesas')}"></head>
+  <body>
+    <div th:replace="~{fragments :: shell('mesas')}"></div>
+    <main id="contenido" class="main">
+      <div class="topline">
+        <span>Sabor Gourmet / Mesas</span>
+        <span class="tag">ADMINISTRACIÓN</span>
+      </div>
+      <div class="page-heading">
+        <div>
+          <span class="eyebrow">PREPARA EL ESPACIO</span>
+          <h1>Cada mesa tiene su lugar.</h1>
+          <p>Administra la capacidad, ubicación y estado de tus mesas.</p>
+        </div>
+        <a class="button" th:href="@{/mesas/nueva}">+ Nueva mesa</a>
+      </div>
+      <div th:replace="~{fragments :: avisos}"></div>
+      <div class="empty panel" th:if="${#lists.isEmpty(mesas)}">
+        <h3>Tu salón está por comenzar</h3>
+        <p>Agrega una mesa para recibir las primeras reservas.</p>
+      </div>
+      <div class="table-grid">
+        <article class="table-card" th:each="m : ${mesas}">
+          <div class="table-card-top">
+            <span
+              class="badge"
+              th:classappend="${m.activa} ? 'active' : 'cancelled'"
+              th:text="${m.activa} ? 'Habilitada' : 'Inactiva'"
+            ></span>
+            <span class="table-number" th:text="|N° ${m.numero}|"></span>
+          </div>
+          <div class="table-drawing" aria-hidden="true">
+            <svg><use th:href="@{/img/icons.svg#mesa}" /></svg>
+          </div>
+          <h2 th:text="|Mesa ${m.numero}|"></h2>
+          <p th:text="${m.ubicacion}"></p>
+          <div class="capacity">
+            <svg aria-hidden="true"><use th:href="@{/img/icons.svg#personas}" /></svg>
+            <span th:text="|Hasta ${m.capacidad} personas|"></span>
+          </div>
+          <div class="card-actions">
+            <a class="button outline" th:href="@{/mesas/{id}/editar(id=${m.id})}">Configurar</a>
+            <form
+              th:action="@{/mesas/{id}/eliminar(id=${m.id})}"
+              method="post"
+              data-confirm="¿Eliminar esta mesa? Debe estar libre de reservas asociadas."
+            >
+              <button class="small-button danger-text" type="submit">Eliminar</button>
+            </form>
+          </div>
+        </article>
+      </div>
+      <p class="helper">
+        Una mesa habilitada puede estar ocupada en un turno. Consulta disponibilidad antes de
+        reservar.
+      </p>
+      <footer th:replace="~{fragments :: pie}"></footer>
+    </main>
+    <script th:replace="~{fragments :: scripts}"></script>
+  </body>
+</html>

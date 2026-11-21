@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{fragments :: head('Disponibilidad')}"></head>
+  <body>
+    <div th:replace="~{fragments :: shell('disponibilidad')}"></div>
+    <main id="contenido" class="main">
+      <div class="topline">
+        <span>Sabor Gourmet / Disponibilidad</span>
+        <span class="tag">PLANIFICA TU VISITA</span>
+      </div>
+      <div class="page-heading">
+        <div>
+          <span class="eyebrow">ENCUENTRA TU LUGAR</span>
+          <h1>Una mesa para tu próximo momento.</h1>
+          <p>Elige el turno y descubre las mesas disponibles.</p>
+        </div>
+      </div>
+      <section class="panel filter-panel">
+        <form th:action="@{/disponibilidad}" method="get" class="availability-search">
+          <div class="field">
+            <label for="fecha">Fecha</label>
+            <input
+              id="fecha"
+              name="fecha"
+              type="date"
+              required
+              th:value="${fecha}"
+              th:min="${fechaMinima}"
+            />
+          </div>
+          <div class="field">
+            <label for="hora">Hora</label>
+            <input
+              id="hora"
+              name="hora"
+              type="time"
+              required
+              th:value="${#temporals.format(hora,'HH:mm')}"
+            />
+          </div>
+          <div class="field">
+            <label for="personas">Personas</label>
+            <input
+              id="personas"
+              name="personas"
+              type="number"
+              min="1"
+              max="100"
+              required
+              th:value="${personas}"
+            />
+          </div>
+          <div class="field">
+            <label for="duracion">Duración (minutos)</label>
+            <input
+              id="duracion"
+              name="duracion"
+              type="number"
+              min="15"
+              max="480"
+              required
+              th:value="${duracion}"
+            />
+          </div>
+          <button class="button" type="submit">
+            Buscar mesas
+            <svg aria-hidden="true"><use th:href="@{/img/icons.svg#buscar}" /></svg>
+          </button>
+        </form>
+      </section>
+      <div th:replace="~{fragments :: avisos}"></div>
+      <section th:if="${consulta != null}">
+        <div class="section-heading">
+          <h2>
+            Mesas disponibles
+            <span class="count" th:text="${#lists.size(consulta.mesasDisponibles)}"></span>
+          </h2>
+          <p
+            th:text="|${#temporals.format(fecha,'dd/MM/yyyy')} · ${#temporals.format(hora,'HH:mm')} · ${personas} personas|"
+          ></p>
+        </div>
+        <div class="empty panel" th:if="${#lists.isEmpty(consulta.mesasDisponibles)}">
+          <h3>No hay mesas para este turno</h3>
+          <p>Prueba otra hora, fecha o cantidad de personas.</p>
+        </div>
+        <div class="table-grid">
+          <article class="table-card" th:each="m : ${consulta.mesasDisponibles}">
+            <div class="table-card-top">
+              <span class="badge active">Disponible</span>
+              <span class="table-number" th:text="|N° ${m.numero}|"></span>
+            </div>
+            <div class="table-drawing" aria-hidden="true">
+              <svg><use th:href="@{/img/icons.svg#mesa}" /></svg>
+            </div>
+            <h3 th:text="|Mesa ${m.numero}|"></h3>
+            <p th:text="${m.ubicacion}"></p>
+            <div class="capacity">
+              <svg aria-hidden="true"><use th:href="@{/img/icons.svg#personas}" /></svg>
+              <span th:text="|Hasta ${m.capacidad} personas|"></span>
+            </div>
+            <a
+              class="button full"
+              th:href="@{/reservas/nueva(fecha=${fecha},hora=${#temporals.format(hora,'HH:mm')},personas=${personas},duracion=${duracion},mesaId=${m.id})}"
+            >
+              Reservar esta mesa
+              <span aria-hidden="true">→</span>
+            </a>
+          </article>
+        </div>
+        <p class="helper">La disponibilidad se vuelve a comprobar al guardar la reserva.</p>
+      </section>
+      <footer th:replace="~{fragments :: pie}"></footer>
+    </main>
+    <script th:replace="~{fragments :: scripts}"></script>
+  </body>
+</html>

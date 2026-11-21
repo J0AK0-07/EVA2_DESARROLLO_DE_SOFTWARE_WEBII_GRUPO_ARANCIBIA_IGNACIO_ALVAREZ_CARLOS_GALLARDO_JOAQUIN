@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{fragments :: head('Clientes')}"></head>
+  <body>
+    <div th:replace="~{fragments :: shell('clientes')}"></div>
+    <main id="contenido" class="main">
+      <div class="topline">
+        <span>Sabor Gourmet / Clientes</span>
+        <span class="tag">QUIENES NOS ELIGEN</span>
+      </div>
+      <div class="page-heading">
+        <div>
+          <span class="eyebrow">ATENCIÓN CERCANA</span>
+          <h1>Nuestros clientes</h1>
+          <p>Los datos de contacto, siempre a mano para preparar cada visita.</p>
+        </div>
+        <a class="button" th:href="@{/clientes/nuevo}">+ Nuevo cliente</a>
+      </div>
+      <div th:replace="~{fragments :: avisos}"></div>
+      <section class="panel">
+        <div class="panel-title">
+          <h2>Directorio de clientes</h2>
+          <span class="count" th:text="${#lists.size(clientes)}"></span>
+        </div>
+        <div class="empty" th:if="${#lists.isEmpty(clientes)}">
+          <h3>Comencemos por conocernos</h3>
+          <p>Registra un cliente para crear su primera reserva.</p>
+        </div>
+        <div class="table-wrap" th:unless="${#lists.isEmpty(clientes)}">
+          <table>
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Correo electrónico</th>
+                <th>Teléfono</th>
+                <th class="right">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="c : ${clientes}">
+                <td>
+                  <div class="person-name">
+                    <span class="avatar" th:text="${#strings.substring(c.nombre,0,1)}"></span>
+                    <strong th:text="${c.nombre}"></strong>
+                  </div>
+                </td>
+                <td th:text="${c.email}"></td>
+                <td th:text="${c.telefono}"></td>
+                <td>
+                  <div class="row-actions">
+                    <a class="small-button" th:href="@{/clientes/{id}/editar(id=${c.id})}">
+                      Editar
+                    </a>
+                    <form
+                      th:action="@{/clientes/{id}/eliminar(id=${c.id})}"
+                      method="post"
+                      data-confirm="¿Eliminar este cliente? Solo es posible si no tiene reservas asociadas."
+                    >
+                      <button class="small-button danger-text" type="submit">Eliminar</button>
+                    </form>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <p class="helper">
+        Los clientes con reservas asociadas se conservan para proteger el historial.
+      </p>
+      <footer th:replace="~{fragments :: pie}"></footer>
+    </main>
+    <script th:replace="~{fragments :: scripts}"></script>
+  </body>
+</html>

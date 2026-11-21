@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head
+    th:replace="~{fragments :: head(${mesaId == null ? 'Nueva mesa' : 'Configurar mesa'})}"
+  ></head>
+  <body>
+    <div th:replace="~{fragments :: shell('mesas')}"></div>
+    <main id="contenido" class="main">
+      <div class="topline">
+        <a th:href="@{/mesas}">← Volver a mesas</a>
+        <span class="tag">ADMINISTRACIÓN</span>
+      </div>
+      <div class="page-heading">
+        <div>
+          <span class="eyebrow">PREPARA EL ESPACIO</span>
+          <h1 th:text="${mesaId == null ? 'Nueva mesa' : 'Configurar mesa'}"></h1>
+          <p>Define un espacio cómodo para cada grupo de clientes.</p>
+        </div>
+      </div>
+      <div class="form-layout">
+        <section class="panel form-panel">
+          <form
+            th:action="${mesaId == null} ? @{/mesas} : @{/mesas/{id}(id=${mesaId})}"
+            th:object="${form}"
+            method="post"
+          >
+            <div th:replace="~{fragments :: errores}"></div>
+            <div class="form-grid">
+              <div class="field">
+                <label for="numero">Número de mesa</label>
+                <input th:field="*{numero}" type="number" required min="1" max="9999" />
+                <small class="field-error" th:errors="*{numero}"></small>
+              </div>
+              <div class="field">
+                <label for="capacidad">Capacidad (personas)</label>
+                <input th:field="*{capacidad}" type="number" required min="1" max="100" />
+                <small class="field-error" th:errors="*{capacidad}"></small>
+              </div>
+            </div>
+            <div class="field">
+              <label for="ubicacion">Ubicación</label>
+              <input
+                th:field="*{ubicacion}"
+                maxlength="100"
+                placeholder="Salón principal, terraza, ventanal..."
+              />
+              <small class="field-error" th:errors="*{ubicacion}"></small>
+            </div>
+            <div class="field">
+              <label for="activa">Estado de la mesa</label>
+              <select th:field="*{activa}">
+                <option value="true">Habilitada para reservas</option>
+                <option value="false">Inactiva</option>
+              </select>
+            </div>
+            <div class="form-actions">
+              <a class="button outline" th:href="@{/mesas}">Volver</a>
+              <button class="button" type="submit">Guardar mesa</button>
+            </div>
+          </form>
+        </section>
+        <aside class="form-aside">
+          <span class="eyebrow">UN SALÓN BIEN ORGANIZADO</span>
+          <h2>El espacio también se cuida.</h2>
+          <p>
+            Cada mesa tiene un número único. La capacidad determina qué grupos pueden reservarla.
+          </p>
+          <div class="aside-line"></div>
+          <p>
+            Antes de desactivar una mesa con reservas futuras, reasigna o cancela esas reservas.
+          </p>
+          <small>Las mesas con historial asociado se conservan.</small>
+        </aside>
+      </div>
+      <footer th:replace="~{fragments :: pie}"></footer>
+    </main>
+    <script th:replace="~{fragments :: scripts}"></script>
+  </body>
+</html>

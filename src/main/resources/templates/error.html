@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{fragments :: head('Revisar solicitud')}"></head>
+  <body>
+    <div th:replace="~{fragments :: shell('')}"></div>
+    <main id="contenido" class="main">
+      <div class="topline"><span>Sabor Gourmet / Revisar solicitud</span></div>
+      <section class="empty panel error-page">
+        <span class="eyebrow" th:text="|SOLICITUD ${status ?: 500}|"></span>
+        <h1>No pudimos completar esta solicitud.</h1>
+        <p
+          th:text="${mensaje ?: 'La página no está disponible. Vuelve al inicio para continuar.'}"
+        ></p>
+        <a class="button" th:href="@{/}">Volver al inicio</a>
+      </section>
+      <footer th:replace="~{fragments :: pie}"></footer>
+    </main>
+    <script th:replace="~{fragments :: scripts}"></script>
+  </body>
+</html>

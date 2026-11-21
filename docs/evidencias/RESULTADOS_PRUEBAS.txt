@@ -1,0 +1,26 @@
+SABOR GOURMET - RESULTADOS VERIFICADOS
+Fecha: 2026-11-15T16:50:42.834970-03:00
+Java: OpenJDK 21.0.13
+Spring Boot: 3.5.7
+Persistencia: Hibernate / Spring Data JPA / H2 en disco
+
+PRUEBAS MAVEN SUREFIRE
+cl.ipss.saborgourmet.controller.ApiAndViewsIntegrationTest: 12 pruebas, 0 fallos, 0 errores, 0 omitidas.
+cl.ipss.saborgourmet.service.ConcurrenciaIntegrationTest: 1 pruebas, 0 fallos, 0 errores, 0 omitidas.
+cl.ipss.saborgourmet.service.ReservaIntegrationTest: 23 pruebas, 0 fallos, 0 errores, 0 omitidas.
+Total: 36 pruebas. BUILD SUCCESS.
+
+VERIFICACION DEL EJECUTABLE EN NAVEGADOR
+CRUD de clientes: aprobado.
+CRUD de mesas: aprobado.
+CRUD de reservas: aprobado.
+Cancelacion y liberacion de disponibilidad: aprobado.
+Secuencia de la coleccion Postman: 14 solicitudes con los codigos esperados.
+Adaptacion: 18 combinaciones de ruta y ancho sin desbordamiento horizontal de pagina.
+Navegacion movil accesible despues de desplazarse: aprobado.
+Persistencia despues de detener y reiniciar Java: aprobado.
+Datos iniciales duplicados despues del reinicio: ninguno.
+Errores JavaScript registrados: 0.
+
+Los XML adjuntos conservan los resultados de casos reales; se omitieron propiedades de entorno y registros extensos de arranque.
+La evidencia describe los recorridos comprobados y no constituye una calificacion docente.

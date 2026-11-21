@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="cl.ipss.saborgourmet.controller.ApiAndViewsIntegrationTest" time="16.23" tests="12" errors="0" skipped="0" failures="0">
+  <testcase name="cancelarApi" classname="cl.ipss.saborgourmet.controller.ApiAndViewsIntegrationTest" time="11.021">
+    <system-out>16:49:58.093 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [cl.ipss.saborgourmet.controller.ApiAndViewsIntegrationTest]: ApiAndViewsIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+16:49:58.178 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration cl.ipss.saborgourmet.SaborGourmetApplication for test class cl.ipss.saborgourmet.controller.ApiAndViewsIntegrationTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.5.7)
+
+</system-out>
+    <system-err>Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+</system-err>
+  </testcase>
+  <testcase name="crearReservaApi" classname="cl.ipss.saborgourmet.controller.ApiAndViewsIntegrationTest" time="0.077" />
+  <testcase name="conflictoApi" classname="cl.ipss.saborgourmet.controller.ApiAndViewsIntegrationTest" time="0.026">
+    <system-out>2026-11-15T16:50:13.536-03:00  WARN 76 --- [           main] c.i.s.exception.GlobalExceptionHandler   : Conflicto de negocio: La mesa ya está reservada en ese horario. Consulte otra mesa o cambie el turno. en /api/reservas
+</system-out>
+  </testcase>
+  <testcase name="paginas" classname="cl.ipss.saborgourmet.controller.ApiAndViewsIntegrationTest" time="0.451" />
+  <testcase name="recursoInexistente" classname="cl.ipss.saborgourmet.controller.ApiAndViewsIntegrationTest" time="0.025">
+    <system-out>2026-11-15T16:50:14.018-03:00  WARN 76 --- [           main] c.i.s.exception.GlobalExceptionHandler   : Recurso no encontrado: Reserva no encontrada. en /api/reservas/999999
+</system-out>
+  </testcase>
+  <testcase name="disponibilidadVista" classname="cl.ipss.saborgourmet.controller.ApiAndViewsIntegrationTest" time="0.025" />
+  <testcase name="parametrosInvalidos" classname="cl.ipss.saborgourmet.controller.ApiAndViewsIntegrationTest" time="0.018" />
+  <testcase name="validarApi" classname="cl.ipss.saborgourmet.controller.ApiAndViewsIntegrationTest" time="0.025" />
+  <testcase name="crearDesdeVista" classname="cl.ipss.saborgourmet.controller.ApiAndViewsIntegrationTest" time="0.025" />
+  <testcase name="formulariosEdicion" classname="cl.ipss.saborgourmet.controller.ApiAndViewsIntegrationTest" time="0.05" />
+  <testcase name="validarFormulario" classname="cl.ipss.saborgourmet.controller.ApiAndViewsIntegrationTest" time="0.023" />
+  <testcase name="errorVista" classname="cl.ipss.saborgourmet.controller.ApiAndViewsIntegrationTest" time="0.02" />
+</testsuite>

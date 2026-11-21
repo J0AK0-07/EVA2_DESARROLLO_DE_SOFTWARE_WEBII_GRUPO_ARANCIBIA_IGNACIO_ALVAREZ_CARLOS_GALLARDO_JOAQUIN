@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="cl.ipss.saborgourmet.service.ReservaIntegrationTest" time="0.853" tests="23" errors="0" skipped="0" failures="0">
+  <testcase name="crudMesa" classname="cl.ipss.saborgourmet.service.ReservaIntegrationTest" time="0.063">
+    <system-out>
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.5.7)
+
+</system-out>
+  </testcase>
+  <testcase name="modificar" classname="cl.ipss.saborgourmet.service.ReservaIntegrationTest" time="0.031" />
+  <testcase name="rechazarClienteInexistente" classname="cl.ipss.saborgourmet.service.ReservaIntegrationTest" time="0.01" />
+  <testcase name="rechazarInactiva" classname="cl.ipss.saborgourmet.service.ReservaIntegrationTest" time="0.021" />
+  <testcase name="rechazarCapacidad" classname="cl.ipss.saborgourmet.service.ReservaIntegrationTest" time="0.01" />
+  <testcase name="protegerMesaReservada" classname="cl.ipss.saborgourmet.service.ReservaIntegrationTest" time="0.03" />
+  <testcase name="correoDuplicado" classname="cl.ipss.saborgourmet.service.ReservaIntegrationTest" time="0.013" />
+  <testcase name="protegerCapacidad" classname="cl.ipss.saborgourmet.service.ReservaIntegrationTest" time="0.018" />
+  <testcase name="mesaDuplicada" classname="cl.ipss.saborgourmet.service.ReservaIntegrationTest" time="0.01" />
+  <testcase name="disponibilidadAlEditar" classname="cl.ipss.saborgourmet.service.ReservaIntegrationTest" time="0.019" />
+  <testcase name="filtros" classname="cl.ipss.saborgourmet.service.ReservaIntegrationTest" time="0.019" />
+  <testcase name="rechazarPasado" classname="cl.ipss.saborgourmet.service.ReservaIntegrationTest" time="0.009" />
+  <testcase name="eliminarReserva" classname="cl.ipss.saborgourmet.service.ReservaIntegrationTest" time="0.015" />
+  <testcase name="cancelar" classname="cl.ipss.saborgourmet.service.ReservaIntegrationTest" time="0.014" />
+  <testcase name="rechazarMesaInexistente" classname="cl.ipss.saborgourmet.service.ReservaIntegrationTest" time="0.009" />
+  <testcase name="noEditarCancelada" classname="cl.ipss.saborgourmet.service.ReservaIntegrationTest" time="0.011" />
+  <testcase name="permitirContiguas" classname="cl.ipss.saborgourmet.service.ReservaIntegrationTest" time="0.011" />
+  <testcase name="crear" classname="cl.ipss.saborgourmet.service.ReservaIntegrationTest" time="0.008" />
+  <testcase name="bloquearSolapamiento" classname="cl.ipss.saborgourmet.service.ReservaIntegrationTest" time="0.012" />
+  <testcase name="rechazarDuracion" classname="cl.ipss.saborgourmet.service.ReservaIntegrationTest" time="0.006" />
+  <testcase name="conservarHistorial" classname="cl.ipss.saborgourmet.service.ReservaIntegrationTest" time="0.012" />
+  <testcase name="cruzarMedianoche" classname="cl.ipss.saborgourmet.service.ReservaIntegrationTest" time="0.011" />
+  <testcase name="crudCliente" classname="cl.ipss.saborgourmet.service.ReservaIntegrationTest" time="0.013" />
+</testsuite>

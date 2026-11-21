@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head
+    th:replace="~{fragments :: head(${clienteId == null ? 'Nuevo cliente' : 'Editar cliente'})}"
+  ></head>
+  <body>
+    <div th:replace="~{fragments :: shell('clientes')}"></div>
+    <main id="contenido" class="main">
+      <div class="topline">
+        <a th:href="@{/clientes}">← Volver a clientes</a>
+        <span class="tag">ATENCIÓN CERCANA</span>
+      </div>
+      <div class="page-heading">
+        <div>
+          <span class="eyebrow">LOS DETALLES IMPORTAN</span>
+          <h1 th:text="${clienteId == null ? 'Nuevo cliente' : 'Editar cliente'}"></h1>
+          <p>Registra sus datos para coordinar las próximas visitas.</p>
+        </div>
+      </div>
+      <div class="form-layout">
+        <section class="panel form-panel">
+          <form
+            th:action="${clienteId == null} ? @{/clientes} : @{/clientes/{id}(id=${clienteId})}"
+            th:object="${form}"
+            method="post"
+          >
+            <div th:replace="~{fragments :: errores}"></div>
+            <div class="field">
+              <label for="nombre">Nombre completo</label>
+              <input
+                th:field="*{nombre}"
+                required
+                maxlength="100"
+                autocomplete="name"
+                placeholder="Nombre y apellido"
+              />
+              <small class="field-error" th:errors="*{nombre}"></small>
+            </div>
+            <div class="field">
+              <label for="email">Correo electrónico</label>
+              <input
+                th:field="*{email}"
+                type="email"
+                required
+                maxlength="150"
+                autocomplete="email"
+                placeholder="nombre@ejemplo.cl"
+              />
+              <small class="field-error" th:errors="*{email}"></small>
+            </div>
+            <div class="field">
+              <label for="telefono">Teléfono de contacto</label>
+              <input
+                th:field="*{telefono}"
+                type="tel"
+                required
+                maxlength="30"
+                autocomplete="tel"
+                placeholder="+56 9 1234 5678"
+              />
+              <small class="field-error" th:errors="*{telefono}"></small>
+            </div>
+            <div class="form-actions">
+              <a class="button outline" th:href="@{/clientes}">Volver</a>
+              <button class="button" type="submit">Guardar cliente</button>
+            </div>
+          </form>
+        </section>
+        <aside class="form-aside">
+          <span class="eyebrow">UN REGISTRO POR PERSONA</span>
+          <h2>Conocernos es el primer paso.</h2>
+          <p>
+            El correo identifica al cliente y no puede repetirse. Puedes actualizar sus datos cuando
+            lo necesites.
+          </p>
+          <div class="aside-line"></div>
+          <p>Una vez registrado, aparecerá en el formulario de nuevas reservas.</p>
+        </aside>
+      </div>
+      <footer th:replace="~{fragments :: pie}"></footer>
+    </main>
+    <script th:replace="~{fragments :: scripts}"></script>
+  </body>
+</html>

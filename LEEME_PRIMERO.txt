@@ -1,0 +1,16 @@
+SABOR GOURMET - EVALUACION UNIDAD 2
+
+1. Extrae TODO el ZIP en una carpeta de tu computador.
+2. Instala Java 21, si aun no lo tienes.
+3. Entra a la carpeta eva_2 y abre run.bat.
+4. Espera el mensaje Started SaborGourmetApplication.
+5. Abre http://localhost:8080 en Chrome o Edge.
+6. Deja la consola abierta mientras usas el sistema.
+
+La carpeta docs incluye el informe, la guia y las evidencias.
+El codigo esta en src; el ejecutable listo esta en dist.
+Para comprobar las pruebas, ejecuta test.bat (JDK 21 e internet en la primera compilacion).
+Si cambias el codigo, usa compilar.bat para actualizar el ejecutable.
+
+Revisa los integrantes y completa el docente en la portada antes de entregar.
+La pauta exige codigo e informe. La guia sirve para explicar y demostrar el trabajo.

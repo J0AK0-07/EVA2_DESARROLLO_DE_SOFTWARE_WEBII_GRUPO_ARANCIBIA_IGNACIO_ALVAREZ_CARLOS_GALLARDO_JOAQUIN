@@ -1,0 +1,175 @@
+{
+  "browser": "157.0.8103.78",
+  "crudReservas": true,
+  "crudClientes": true,
+  "crudMesas": true,
+  "cancelacionLiberaMesa": true,
+  "persistenciaTrasReinicio": true,
+  "sinDatosSemillaDuplicados": true,
+  "responsive": [
+    {
+      "width": 1440,
+      "route": "/",
+      "horizontalOverflow": false
+    },
+    {
+      "width": 1440,
+      "route": "/disponibilidad",
+      "horizontalOverflow": false
+    },
+    {
+      "width": 1440,
+      "route": "/reservas",
+      "horizontalOverflow": false
+    },
+    {
+      "width": 1440,
+      "route": "/clientes",
+      "horizontalOverflow": false
+    },
+    {
+      "width": 1440,
+      "route": "/mesas",
+      "horizontalOverflow": false
+    },
+    {
+      "width": 1440,
+      "route": "/reservas/nueva",
+      "horizontalOverflow": false
+    },
+    {
+      "width": 768,
+      "route": "/",
+      "horizontalOverflow": false
+    },
+    {
+      "width": 768,
+      "route": "/disponibilidad",
+      "horizontalOverflow": false
+    },
+    {
+      "width": 768,
+      "route": "/reservas",
+      "horizontalOverflow": false
+    },
+    {
+      "width": 768,
+      "route": "/clientes",
+      "horizontalOverflow": false
+    },
+    {
+      "width": 768,
+      "route": "/mesas",
+      "horizontalOverflow": false
+    },
+    {
+      "width": 768,
+      "route": "/reservas/nueva",
+      "horizontalOverflow": false
+    },
+    {
+      "width": 390,
+      "route": "/",
+      "horizontalOverflow": false
+    },
+    {
+      "width": 390,
+      "route": "/disponibilidad",
+      "horizontalOverflow": false
+    },
+    {
+      "width": 390,
+      "route": "/reservas",
+      "horizontalOverflow": false
+    },
+    {
+      "width": 390,
+      "route": "/clientes",
+      "horizontalOverflow": false
+    },
+    {
+      "width": 390,
+      "route": "/mesas",
+      "horizontalOverflow": false
+    },
+    {
+      "width": 390,
+      "route": "/reservas/nueva",
+      "horizontalOverflow": false
+    }
+  ],
+  "coleccionPostman": [
+    {
+      "solicitud": "01. Registrar cliente de prueba",
+      "esperado": 201,
+      "obtenido": 201
+    },
+    {
+      "solicitud": "02. Registrar mesa de prueba",
+      "esperado": 201,
+      "obtenido": 201
+    },
+    {
+      "solicitud": "03. Consultar disponibilidad",
+      "esperado": 200,
+      "obtenido": 200
+    },
+    {
+      "solicitud": "04. Crear reserva",
+      "esperado": 201,
+      "obtenido": 201
+    },
+    {
+      "solicitud": "05. Verificar conflicto de horario",
+      "esperado": 409,
+      "obtenido": 409
+    },
+    {
+      "solicitud": "06. Modificar reserva",
+      "esperado": 200,
+      "obtenido": 200
+    },
+    {
+      "solicitud": "07. Cancelar reserva",
+      "esperado": 200,
+      "obtenido": 200
+    },
+    {
+      "solicitud": "08. Comprobar mesa liberada",
+      "esperado": 200,
+      "obtenido": 200
+    },
+    {
+      "solicitud": "09. Proteger historial del cliente",
+      "esperado": 409,
+      "obtenido": 409
+    },
+    {
+      "solicitud": "10. Eliminar reserva de prueba",
+      "esperado": 204,
+      "obtenido": 204
+    },
+    {
+      "solicitud": "11. Eliminar mesa de prueba",
+      "esperado": 204,
+      "obtenido": 204
+    },
+    {
+      "solicitud": "12. Eliminar cliente de prueba",
+      "esperado": 204,
+      "obtenido": 204
+    },
+    {
+      "solicitud": "13. Recurso inexistente",
+      "esperado": 404,
+      "obtenido": 404
+    },
+    {
+      "solicitud": "14. Validación de datos",
+      "esperado": 400,
+      "obtenido": 400
+    }
+  ],
+  "erroresJavascript": [],
+  "fechaPrueba": "2026-11-15T16:50:42.834970-03:00"
+}

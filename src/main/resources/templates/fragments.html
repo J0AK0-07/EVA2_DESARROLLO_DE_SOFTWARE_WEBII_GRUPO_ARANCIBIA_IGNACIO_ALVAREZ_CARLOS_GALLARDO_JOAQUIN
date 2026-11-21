@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head th:fragment="head(titulo)">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title th:text="${titulo} + ' · Sabor Gourmet'">Sabor Gourmet</title>
+    <meta name="theme-color" content="#193d32" />
+    <link rel="icon" th:href="@{/img/marca.svg}" type="image/svg+xml" />
+    <link rel="stylesheet" th:href="@{/css/app.css}" />
+  </head>
+  <body>
+    <div th:fragment="shell(activo)">
+      <a class="skip" href="#contenido">Ir al contenido</a>
+      <header class="mobile-bar">
+        <a class="mobile-brand" th:href="@{/}">Sabor Gourmet</a>
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-label="Abrir navegación"
+          aria-controls="navegacion"
+          aria-expanded="false"
+        >
+          <svg aria-hidden="true"><use th:href="@{/img/icons.svg#menu}" /></svg>
+        </button>
+      </header>
+      <div class="nav-shade" hidden></div>
+      <aside class="sidebar" id="navegacion" aria-label="Navegación principal">
+        <a class="brand" th:href="@{/}">
+          <img th:src="@{/img/marca.svg}" width="43" height="43" alt="" />
+          <span>
+            Sabor Gourmet
+            <small>RESTAURANTE</small>
+          </span>
+        </a>
+        <p class="nav-caption">TU RESTAURANTE</p>
+        <nav>
+          <a
+            th:href="@{/}"
+            th:classappend="${activo == 'inicio'} ? 'selected'"
+            th:attr="aria-current=${activo == 'inicio' ? 'page' : null}"
+          >
+            <svg aria-hidden="true"><use th:href="@{/img/icons.svg#inicio}" /></svg>
+            Inicio
+          </a>
+          <a
+            th:href="@{/disponibilidad}"
+            th:classappend="${activo == 'disponibilidad'} ? 'selected'"
+            th:attr="aria-current=${activo == 'disponibilidad' ? 'page' : null}"
+          >
+            <svg aria-hidden="true"><use th:href="@{/img/icons.svg#buscar}" /></svg>
+            Disponibilidad
+          </a>
+          <a
+            th:href="@{/reservas}"
+            th:classappend="${activo == 'reservas'} ? 'selected'"
+            th:attr="aria-current=${activo == 'reservas' ? 'page' : null}"
+          >
+            <svg aria-hidden="true"><use th:href="@{/img/icons.svg#calendario}" /></svg>
+            Reservas
+          </a>
+          <a
+            th:href="@{/clientes}"
+            th:classappend="${activo == 'clientes'} ? 'selected'"
+            th:attr="aria-current=${activo == 'clientes' ? 'page' : null}"
+          >
+            <svg aria-hidden="true"><use th:href="@{/img/icons.svg#personas}" /></svg>
+            Clientes
+          </a>
+          <a
+            th:href="@{/mesas}"
+            th:classappend="${activo == 'mesas'} ? 'selected'"
+            th:attr="aria-current=${activo == 'mesas' ? 'page' : null}"
+          >
+            <svg aria-hidden="true"><use th:href="@{/img/icons.svg#mesa}" /></svg>
+            Mesas
+          </a>
+        </nav>
+        <div class="sidebar-note">
+          <span class="live-dot"></span>
+          Cada mesa, una buena experiencia.
+          <small>Gestiona los detalles. Disfruta el servicio.</small>
+        </div>
+        <div class="sidebar-bottom">
+          Sabor Gourmet
+          <span>Reservas en línea</span>
+        </div>
+      </aside>
+    </div>
+    <div th:fragment="avisos" class="notices">
+      <div th:if="${exito}" class="notice success" role="status" th:text="${exito}"></div>
+      <div th:if="${error}" class="notice danger" role="alert" th:text="${error}"></div>
+    </div>
+    <div th:fragment="errores" th:if="${#fields.hasAnyErrors()}" class="notice danger" role="alert">
+      <strong>Revisa los datos antes de continuar.</strong>
+      <ul>
+        <li th:each="e : ${#fields.allErrors()}" th:text="${e}"></li>
+      </ul>
+    </div>
+    <footer th:fragment="pie" class="page-footer">
+      <span>Sabor Gourmet</span>
+      <span>El buen servicio comienza con una buena reserva.</span>
+    </footer>
+    <script th:fragment="scripts" th:src="@{/js/app.js}" defer></script>
+  </body>
+</html>
